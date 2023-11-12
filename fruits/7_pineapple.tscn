@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://kclfiqityjuj"]
+
+[ext_resource type="Script" path="res://fruit.gd" id="1_ibcty"]
+[ext_resource type="Texture2D" uid="uid://hbnylf70ifxx" path="res://art/ananas.png" id="2_ypee6"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_lbxng"]
+bounce = 0.1
+absorbent = true
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_asyu2"]
+radius = 90.0
+height = 200.0
+
+[node name="Fruit" type="RigidBody2D"]
+mass = 4.0
+physics_material_override = SubResource("PhysicsMaterial_lbxng")
+max_contacts_reported = 10
+contact_monitor = true
+script = ExtResource("1_ibcty")
+fruit_level = 7
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(2, -19)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_ypee6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4, -1)
+shape = SubResource("CapsuleShape2D_asyu2")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 24
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.86
+emission_shape = 1
+emission_sphere_radius = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+scale_amount_min = 5.0
+scale_amount_max = 5.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

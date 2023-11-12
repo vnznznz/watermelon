@@ -1,0 +1,93 @@
+[gd_scene load_steps=14 format=3 uid="uid://cpo0cjoqycm7c"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_yevae"]
+[ext_resource type="Texture2D" uid="uid://dr57084jg6h5u" path="res://icon.svg" id="2_fpcam"]
+[ext_resource type="PackedScene" uid="uid://bhq5bfnral7nb" path="res://fruits/0_blueberry.tscn" id="4_n7bdf"]
+[ext_resource type="PackedScene" uid="uid://cqg27hukvv2c2" path="res://fruits/1_cherry.tscn" id="5_1n3ht"]
+[ext_resource type="PackedScene" uid="uid://cdkeou4hsknd5" path="res://fruits/2_plum.tscn" id="6_mibyd"]
+[ext_resource type="PackedScene" uid="uid://ch21dss8c74we" path="res://fruits/3_persimmon.tscn" id="7_yefy7"]
+[ext_resource type="PackedScene" uid="uid://deu1ybqnsf6m6" path="res://fruits/4_apple.tscn" id="8_r6no6"]
+[ext_resource type="PackedScene" uid="uid://3h4f5v23kxcj" path="res://fruits/5_peach.tscn" id="9_5yg0i"]
+[ext_resource type="PackedScene" uid="uid://dtgn3rn4j363k" path="res://fruits/6_coconut.tscn" id="10_hlhvt"]
+[ext_resource type="PackedScene" uid="uid://kclfiqityjuj" path="res://fruits/7_pineapple.tscn" id="11_3bg6k"]
+[ext_resource type="PackedScene" uid="uid://ddwhj1ropy3rk" path="res://fruits/8_watermelon.tscn" id="12_p6ln0"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fmx1e"]
+bounce = 0.5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yhrij"]
+size = Vector2(1329.36, 41)
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_yevae")
+fruits = Array[PackedScene]([ExtResource("4_n7bdf"), ExtResource("5_1n3ht"), ExtResource("6_mibyd"), ExtResource("7_yefy7"), ExtResource("8_r6no6"), ExtResource("9_5yg0i"), ExtResource("10_hlhvt"), ExtResource("11_3bg6k"), ExtResource("12_p6ln0")])
+
+[node name="Boundary" type="Node2D" parent="."]
+
+[node name="RigidBody2D" type="StaticBody2D" parent="Boundary"]
+position = Vector2(338, 1004)
+physics_material_override = SubResource("PhysicsMaterial_fmx1e")
+
+[node name="Icon" type="Sprite2D" parent="Boundary/RigidBody2D"]
+position = Vector2(162.5, 0)
+scale = Vector2(7.82031, 0.320312)
+texture = ExtResource("2_fpcam")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundary/RigidBody2D"]
+position = Vector2(173.25, 0)
+shape = SubResource("RectangleShape2D_yhrij")
+
+[node name="RigidBody2D2" type="StaticBody2D" parent="Boundary"]
+position = Vector2(10, 684)
+rotation = 1.57008
+
+[node name="Icon" type="Sprite2D" parent="Boundary/RigidBody2D2"]
+position = Vector2(-171.633, 0)
+scale = Vector2(7.96302, 0.320312)
+texture = ExtResource("2_fpcam")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundary/RigidBody2D2"]
+position = Vector2(-65.3054, -1.90735e-06)
+shape = SubResource("RectangleShape2D_yhrij")
+
+[node name="RigidBody2D3" type="StaticBody2D" parent="Boundary"]
+position = Vector2(1007, 682)
+rotation = 1.57008
+
+[node name="Icon" type="Sprite2D" parent="Boundary/RigidBody2D3"]
+position = Vector2(-175.867, 0)
+scale = Vector2(8.02918, 0.320312)
+texture = ExtResource("2_fpcam")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundary/RigidBody2D3"]
+position = Vector2(-84.6246, 0)
+shape = SubResource("RectangleShape2D_yhrij")
+
+[node name="Fruits" type="Node" parent="."]
+
+[node name="Fruit" parent="." instance=ExtResource("4_n7bdf")]
+position = Vector2(213, 239)
+
+[node name="Fruit2" parent="." instance=ExtResource("5_1n3ht")]
+position = Vector2(434, 171)
+
+[node name="Fruit3" parent="." instance=ExtResource("6_mibyd")]
+position = Vector2(672, 315)
+
+[node name="Fruit4" parent="." instance=ExtResource("7_yefy7")]
+position = Vector2(245, 510)
+
+[node name="Fruit5" parent="." instance=ExtResource("8_r6no6")]
+position = Vector2(503, 560)
+
+[node name="Fruit6" parent="." instance=ExtResource("9_5yg0i")]
+position = Vector2(767, 570)
+
+[node name="Fruit7" parent="." instance=ExtResource("10_hlhvt")]
+position = Vector2(212, 776)
+
+[node name="Fruit8" parent="." instance=ExtResource("11_3bg6k")]
+position = Vector2(562, 805)
+
+[node name="Fruit9" parent="." instance=ExtResource("12_p6ln0")]
+position = Vector2(780, 97)

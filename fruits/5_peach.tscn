@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://3h4f5v23kxcj"]
+
+[ext_resource type="Script" path="res://fruit.gd" id="1_xeuhe"]
+[ext_resource type="Texture2D" uid="uid://brskp77doj7ap" path="res://art/Pfirsich.png" id="2_0jr8s"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_lbxng"]
+bounce = 0.1
+absorbent = true
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rjk0j"]
+radius = 64.6531
+height = 152.0
+
+[node name="Fruit" type="RigidBody2D"]
+mass = 3.0
+physics_material_override = SubResource("PhysicsMaterial_lbxng")
+max_contacts_reported = 10
+contact_monitor = true
+script = ExtResource("1_xeuhe")
+fruit_level = 5
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(2, -3)
+scale = Vector2(0.250706, 0.247581)
+texture = ExtResource("2_0jr8s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -2)
+rotation = 1.5708
+scale = Vector2(0.989899, 1)
+shape = SubResource("CapsuleShape2D_rjk0j")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 24
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.86
+emission_shape = 1
+emission_sphere_radius = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+scale_amount_min = 5.0
+scale_amount_max = 5.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

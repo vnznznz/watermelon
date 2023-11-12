@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://ddwhj1ropy3rk"]
+
+[ext_resource type="Script" path="res://fruit.gd" id="1_gxilg"]
+[ext_resource type="Texture2D" uid="uid://cjuaylgnv440k" path="res://art/watermelon.png" id="2_wp048"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_lbxng"]
+bounce = 0.1
+absorbent = true
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g2xkj"]
+radius = 119.0
+height = 268.0
+
+[node name="Fruit" type="RigidBody2D"]
+mass = 5.0
+physics_material_override = SubResource("PhysicsMaterial_lbxng")
+max_contacts_reported = 10
+contact_monitor = true
+script = ExtResource("1_gxilg")
+fruit_level = 8
+
+[node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_wp048")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_g2xkj")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 24
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.86
+emission_shape = 1
+emission_sphere_radius = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+scale_amount_min = 5.0
+scale_amount_max = 5.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

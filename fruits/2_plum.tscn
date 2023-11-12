@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://cdkeou4hsknd5"]
+
+[ext_resource type="Script" path="res://fruit.gd" id="1_5a8xi"]
+[ext_resource type="Texture2D" uid="uid://dx21geuwmr0wp" path="res://art/Pflaume.png" id="2_vo7hr"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_lbxng"]
+bounce = 0.1
+absorbent = true
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xom70"]
+radius = 35.0143
+
+[node name="Fruit" type="RigidBody2D"]
+mass = 1.5
+physics_material_override = SubResource("PhysicsMaterial_lbxng")
+max_contacts_reported = 10
+contact_monitor = true
+script = ExtResource("1_5a8xi")
+fruit_level = 2
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(2, -4)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_vo7hr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_xom70")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 24
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.86
+emission_shape = 1
+emission_sphere_radius = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+scale_amount_min = 5.0
+scale_amount_max = 5.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
